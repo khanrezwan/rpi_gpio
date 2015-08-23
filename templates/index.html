@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%- block head %}
+        <title>{% block title %}{% endblock title %}</title>
+        {%- block metas %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {%- endblock metas %}
+        {% block scripts %}
+            <script type="text/javascript"
+                    src="{{ url_for('static', filename='js/lib/jquery-2.1.4.min.js') }}"></script>
+            <script type="text/javascript"
+                    src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
+        {% endblock scripts %}
+        {%- block styles %}
+            <!-- Bootstrap -->
+            <link href="{{ url_for('static', filename='css/lib/font-awesome.min.css') }}"
+                  rel="stylesheet" type="text/css">
+            <link href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}"
+                  rel="stylesheet" type="text/css">
+
+        {%- endblock styles %}
+        {%- block favicon %}
+            <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        {%- endblock favicon %}
+    {%- endblock head %}
+</head>
+
+<body>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12 col-sm-12 col-lg-6">
+<h1>Device Listing and Status</h1>
+<ul>
+    {% for pin in pins %}
+        <li>The {{ pins[pin].name }}{% if pins[pin].state == true %} is currently on <a class="btn btn-primary" href="/{{ pin }}/off">turn off</a>
+        {% else %} is currently off <a class="btn btn-primary" href="/{{ pin }}/on">turn on</a>
+            {% endif %}
+        </li>
+
+    {% endfor %}
+ </ul>
+
+{% if message %}
+    <h2>{{ message }}</h2>
+{% endif %}
+</div>
+</div>
+</div>
+</body>
+</html>
