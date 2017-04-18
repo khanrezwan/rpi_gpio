@@ -6,12 +6,12 @@ import RPi.GPIO as GPIO
 
 app = Flask(__name__, static_folder='static')
 bootstrap = Bootstrap(app)
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 # Create a dictionary called pins to store the pin number, name, and pin state:
 pins = {
-    7: {'name': 'Led 1', 'state': GPIO.LOW},
-    11: {'name': 'Led 2', 'state': GPIO.LOW}
+    18: {'name': 'Led 1', 'state': GPIO.LOW},
+    19: {'name': 'Led 2', 'state': GPIO.LOW}
 }
 
 # Set each pin as an output and make it low:
